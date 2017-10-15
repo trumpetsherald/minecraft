@@ -1,9 +1,9 @@
 import command_chainer
 
-GROUND = 70
-LENGTH = 17
+GROUND = 13
+LENGTH = 55
 CEILING = 4
-FACES = "North"
+FACES = "South"
 
 STAIR_ORIENTATION = {
     "North": 3,
@@ -98,7 +98,8 @@ def main():
                 "setblock ~%s %s ~ minecraft:quartz_stairs %s" % (x, y, stairs)
             )
             commands.append(
-                "setblock ~%s %s ~-1 minecraft:quartz_stairs %s" % (x, y, stairs)
+                "setblock ~%s %s ~-1 minecraft:quartz_stairs %s" % (
+                    x, y, stairs)
             )
             x -= 1
             y += 1
