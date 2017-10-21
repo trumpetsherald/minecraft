@@ -1,9 +1,9 @@
 import command_chainer
 
-GROUND = 13
-LENGTH = 55
+GROUND = 12
+LENGTH = 64
 CEILING = 4
-FACES = "South"
+FACES = "West"
 
 STAIR_ORIENTATION = {
     "North": 3,

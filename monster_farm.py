@@ -1,9 +1,9 @@
 import command_chainer
 
-GROUND = 13
+GROUND = 70
 HEIGHT = 20
-FACES = "South"
-STOREYS = 4
+FACES = "North"
+STOREYS = 10
 C_HEIGHT = 6  # This is how tall each kill chamber is from channel to roof
 
 HOPPER_ORIENTATION = {
