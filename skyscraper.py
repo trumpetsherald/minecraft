@@ -3,6 +3,8 @@ import command_chainer
 GROUND_LEVEL = 70
 X_DIST = 63
 Z_DIST = 63
+HEIGHT = 241
+
 # WALL_MATERIAL = "minecraft:stained_hardened_clay 9"
 WALL_MATERIAL = "minecraft:concrete 15"
 FLOOR_MATERIAL = "minecraft:stone 4"
@@ -11,22 +13,11 @@ WINDOW_WIDTH = 3
 WINDOW_SPACING = 2
 CORNER_WIDTH = 2
 
-HEIGHT = 241
-FACES = "South"
-
-LADDER_ORIENTATION = {
-    "North": 2,
-    "South": 3,
-    "East": 5,
-    "West": 4
-}
-
-SIGN_ORIENTATION = {
-    "North": 2,
-    "South": 3,
-    "East": 5,
-    "West": 4
-}
+# Default is make the first 3 floors 12 apart and rest 8
+FLOOR_SPACINGS = [
+    {'height': 12, 'count': 3},
+    {'height': 8, 'count': -1}
+]
 
 
 def mark_the_location():
@@ -163,6 +154,32 @@ def build_z_windows(commands):
             WINDOW_MATERIAL)
         )
         z -= (WINDOW_SPACING + WINDOW_WIDTH)
+
+
+def build_floors(commands):
+    last_floor = GROUND_LEVEL
+
+    for i in range(0, len(FLOOR_SPACINGS) - 1):
+        if i > len(FLOOR_SPACINGS) - 1 and FLOOR_SPACINGS[i]['count'] == -1:
+            pass #  come back to this
+
+
+
+    for floor in FLOOR_SPACINGS:
+        # Ok this is shitty logic but whatever it works
+        # You b
+        if floor['count'] != -1:
+            for i in range(1, floor['count']):
+                y = GROUND_LEVEL + (floor['height'] * i)
+                if y > HEIGHT:
+                    break
+                commands.append("fill ~2 ~%s ~2 ~%s ~%s ~%s %s" % (
+                    y, X_DIST, y - 1, Z_DIST, WALL_MATERIAL
+                ))
+        else:
+            i = 1
+
+            y = GROUND_LEVEL + (floor['height'] * i)
 
 
 def main():

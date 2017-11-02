@@ -1,8 +1,8 @@
 import command_chainer
 
-FLOOR = 70
-TOP = 241  # -1 subtract 1 if you start from top
-FACES = "South"
+FLOOR = 12
+TOP = 106 - 1  # -1 subtract 1 if you start from top
+FACES = "North"
 FLOOR_SPACING = 4
 
 LADDER_ORIENTATION = {
@@ -36,7 +36,7 @@ def excavate_and_cap(commands):
 
 def build_elevator_enclosure(commands):
     commands.append(
-        "fill ~4 %s ~4 ~8 %s ~8 minecraft:concrete 7" % (FLOOR, TOP))
+        "fill ~4 %s ~4 ~8 %s ~8 minecraft:stained_hardened_clay 15" % (FLOOR, TOP))
 
 
 def dig_shafts(commands):
@@ -116,7 +116,7 @@ def main():
     print "Paste these into a command block combiner " \
           "tool once you are sure where you want things."
     commands = []
-    # excavate_and_cap(commands)
+    excavate_and_cap(commands)
     build_elevator_enclosure(commands)
     dig_shafts(commands)
     configure_up_shaft(commands)
